@@ -37,6 +37,8 @@ class Application extends ro.pippo.core.Application {
 			Integer i = conn.createQuery("select count(*) from sqlite_master where type = 'table' and name = 'tweets'").executeScalar(Integer.class);
             if (i == 0) {
                 conn.createQuery("create table tweets (id integer primary key, tweet string);").executeUpdate();
+                conn.createQuery("INSERT INTO tweets VALUES (null, :tweet)").addParameter("tweet", "^ go ahead and make a tweet").executeUpdate();
+                System.out.println(">>>>>>>>> <<<<<<<<<");
             }
         }
     }
